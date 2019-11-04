@@ -4,10 +4,18 @@ const { Schema } = mongoose;
 
 const applySchema = new Schema(
   {
-    userId: { type: String, required: true },
-    jobId: { type: String, required: true },
     state: { type: String },
     hired: { type: Boolean },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    jobId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Job',
+      required: true,
+    },
   },
   {
     timestamps: {
