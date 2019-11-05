@@ -20,7 +20,7 @@ mongoose
   });
 
 const authRouter = require('./routes/auth');
-const jobs = require('./routes/jobs');
+const jobsRouter = require('./routes/jobs');
 
 const app = express();
 
@@ -58,8 +58,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', authRouter);
-app.use('/jobs', jobs);
-app.use('/jobs/new', jobs);
+app.use('/jobs', jobsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
