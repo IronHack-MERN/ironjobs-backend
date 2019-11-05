@@ -9,8 +9,6 @@ const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 require('dotenv').config();
 
-const jobs = require('./routes/jobs');
-
 mongoose.set('useCreateIndex', true);
 mongoose
   .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,6 +20,7 @@ mongoose
   });
 
 const authRouter = require('./routes/auth');
+const jobs = require('./routes/jobs');
 
 const app = express();
 
@@ -60,6 +59,7 @@ app.use((req, res, next) => {
 
 app.use('/', authRouter);
 app.use('/jobs', jobs);
+app.use('/jobs/new', jobs);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
