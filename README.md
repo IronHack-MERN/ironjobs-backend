@@ -3,16 +3,16 @@
 
 ## Routes
 ## User
-| Method    | Path          | Description                                           |
-| ------    | ------------  | ---------------------------------------------------   | 
-|POST       | /login        | Login profile                                         | 
-|POST       | signup        | New user                                              |
-|GET        | jobs/:id      | Show an job                                           |
-|GET        | /jobs         | Show all jobs                                         |
-|POST       | /jobs/new     | Add new job                                           |
-|GET        | /me           | My perfil                                             |
-|POST       | applies/:idJob| New apply                                             |
-|GET        | applies       | Show all applies of a user candidate                  |
+| Method    | Path              | Description                                           |
+| ------    | ----------------  | ---------------------------------------------------   | 
+|POST       | /login            | Login profile                                         | 
+|POST       | /signup           | New user                                              |
+|GET        | /jobs/:id         | Show an job                                           |
+|GET        | /jobs             | Show all jobs                                         |
+|POST       | /jobs/new         | Add new job                                           |
+|GET        | /me               | My perfil                                             |
+|POST       | /applies/:idJob   | New apply                                             |
+|GET        | /applies          | Show all applies of a user candidate                  |
 
 
 ## Start project
