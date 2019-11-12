@@ -20,6 +20,7 @@ mongoose
 
 const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
+const userRouter = require('./routes/users');
 
 const app = express();
 app.set('trust proxy', true);
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 
 app.use('/', authRouter);
 app.use('/jobs', jobsRouter);
+app.use('/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
