@@ -13,5 +13,24 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.post('/:id', async (req, res, next) => {
+  const { _id: userId } = req.session.currentUser;
+  const jobId = req.params.id;
+  const {
+    state, hired,
+  } = req.body;
+
+  try {
+    const newApply = await Apply.create({
+      userId,
+      jobId,
+      state,
+      hired,
+    });
+    res.status(200).json(newApply);
+  } catch (err) {
+    next(`*** Alert -> You have an error: ${err}`);
+  }
+});
 
 module.exports = router;
