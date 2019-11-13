@@ -4,7 +4,7 @@ const { checkIfLoggedIn } = require('../middlewares/index');
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', checkIfLoggedIn, async (req, res, next) => {
   try {
     const applies = await Apply.find();
     res.status(200).json(applies);
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/:id', async (req, res, next) => {
+router.post('/:id', checkIfLoggedIn, async (req, res, next) => {
   const { _id: userId } = req.session.currentUser;
   const jobId = req.params.id;
   const {
@@ -30,6 +30,35 @@ router.post('/:id', async (req, res, next) => {
     res.status(200).json(newApply);
   } catch (err) {
     next(`*** Alert -> You have an error: ${err}`);
+  }
+});
+
+router.put('/:id', checkIfLoggedIn, async (req, res, next) => {
+  const idApply = req.params.id;
+  const {
+    state,
+  } = req.body;
+
+  try {
+    const response = await Apply.findByIdAndUpdate(
+      idApply,
+      {
+        state,
+      },
+      { new: true },
+    )
+      .then((apply) => {
+        res.json({ apply });
+      })
+      .catch((error) => {
+        next(error);
+      });
+    res.status(200).json({
+      message: 'Apply updated successfully',
+      response,
+    });
+  } catch (err) {
+    next(`You have an error: ${err} in the apply:  ${idApply}`);
   }
 });
 
