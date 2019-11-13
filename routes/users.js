@@ -52,13 +52,12 @@ router.put('/', checkIfLoggedIn, async (req, res, next) => {
               writtenLevel: req.body.writtenLevel,
               certificate: req.body.certificate,
             },
-          });
+          },
+          { new: true });
         break;
       default:
         break;
     }
-
-    // { new: true }
 
     res.status(200).json({
       message: 'User updated successfully',
