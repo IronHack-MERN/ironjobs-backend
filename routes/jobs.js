@@ -45,7 +45,7 @@ router.put('/:id', checkIfLoggedIn, async (req, res, next) => {
   } = req.body;
 
   try {
-    const response = Jobs.findByIdAndUpdate(
+    const response = await Jobs.findByIdAndUpdate(
       jobId,
       {
         title,
@@ -66,7 +66,6 @@ router.put('/:id', checkIfLoggedIn, async (req, res, next) => {
       .catch((error) => {
         next(error);
       });
-
     res.status(200).json({
       message: 'User updated successfully',
       response,
