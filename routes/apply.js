@@ -46,13 +46,7 @@ router.put('/:id', checkIfLoggedIn, async (req, res, next) => {
         state,
       },
       { new: true },
-    )
-      .then((apply) => {
-        res.json({ apply });
-      })
-      .catch((error) => {
-        next(error);
-      });
+    );
     res.status(200).json({
       message: 'Apply updated successfully',
       response,
