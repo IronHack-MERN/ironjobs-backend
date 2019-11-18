@@ -9,7 +9,7 @@ const jobSchema = new Schema(
     company: { type: String, required: true },
     typePosition: { type: String },
     specialty: { type: String },
-    salary: { type: Number },
+    salary: { type: String },
     requeriments: { type: String },
     isOffered: { type: String },
     location: { type: String },
