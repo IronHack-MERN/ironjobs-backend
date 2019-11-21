@@ -15,9 +15,8 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
 
 router.get('/:id', checkIfLoggedIn, async (req, res, next) => {
   const { _id: userIds } = req.session.currentUser;
-  const jobIds = req.params.id;
   try {
-    const applies = await Apply.find({ userId: userIds, jobId: jobIds }).populate('jobId');
+    const applies = await Apply.find({ userId: userIds }).populate('jobId');
     res.status(200).json(applies);
   } catch (err) {
     next(`*** Alert -> You have an error: ${err}`);
